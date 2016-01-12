@@ -63,6 +63,8 @@
         //     .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
         //     .attr("class", "state-boundary")
         //     .attr("d", path);
+
+        svg.append("circle").attr("r",5).style("fill","grey").attr("transform", function() {return "translate(" + projection([-122.431297,37.773972]) + ")";});
     });
 
     d3.select(self.frameElement).style("height", height + "px");
