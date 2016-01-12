@@ -1,0 +1,89 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Language" content="en" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <title>Superbowl</title>
+</head>
+<style>
+.land {
+    fill: white;
+    stroke: darkgrey;
+    stroke-width: 1px;
+}
+
+.county-boundary {
+    fill: none;
+    stroke: #fff;
+    stroke-width: .5px;
+}
+
+.state-boundary {
+    fill: none;
+    stroke: #fff;
+}
+</style>
+
+<body>
+    <div id="graphic"></div>
+    <script type="text/javascript" src="js/d3.min.js"></script>
+    <script type="text/javascript" src="js/topojson.v1.min.js"></script>
+    <script>
+    var width = 960,
+        height = 500;
+
+    var projection = d3.geo.albersUsa()
+        .scale(1000)
+        .translate([width / 2, height / 2]);
+
+    var path = d3.geo.path()
+        .projection(projection);
+
+    var svg = d3.select("#graphic").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .call(responsivefy);
+
+    d3.json("us.json", function(error, us) {
+        if (error) throw error;
+
+        svg.insert("path", ".graticule")
+            .datum(topojson.feature(us, us.objects.land))
+            .attr("class", "land")
+            .attr("d", path);
+
+        // svg.insert("path", ".graticule")
+        //     .datum(topojson.mesh(us, us.objects.counties, function(a, b) { return a !== b && !(a.id / 1000 ^ b.id / 1000); }))
+        //     .attr("class", "county-boundary")
+        //     .attr("d", path);
+
+        // svg.insert("path", ".graticule")
+        //     .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+        //     .attr("class", "state-boundary")
+        //     .attr("d", path);
+    });
+
+    d3.select(self.frameElement).style("height", height + "px");
+
+    function responsivefy(svg) {
+
+        var container = d3.select(svg.node().parentNode),
+            width = parseInt(svg.style("width")),
+            height = parseInt(svg.style("height")),
+            aspect = width / height;
+
+        svg.attr("viewBox", "0 0 " + width + " " + height)
+            .attr("perserveAspectRatio", "xMinYMid")
+            .call(resize);
+
+        d3.select(window).on("resize." + container.attr("#graphic"), resize);
+
+        function resize() {
+            var targetWidth = parseInt(container.style("width"));
+            svg.attr("width", targetWidth);
+            svg.attr("height", Math.round(targetWidth / aspect));
+        }
+    }
+    </script>
