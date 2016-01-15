@@ -9,7 +9,7 @@
 </head>
 <style>
 .land {
-    fill: white;
+    fill: none;
     stroke: darkgrey;
     stroke-width: 1px;
 }
@@ -20,16 +20,23 @@
     stroke-width: .5px;
 }
 
-.state-boundary {
-    fill: none;
-    stroke: #fff;
-}
+.arcs path {
+	  /*stroke-width: 2px;*/
+	  stroke: black;
+	  pointer-events: none;
+	  fill: none;
+	}
+
+
+
 </style>
 
 <body>
     <div id="graphic"></div>
     <script type="text/javascript" src="js/d3.min.js"></script>
     <script type="text/javascript" src="js/topojson.v1.min.js"></script>
+    <script src="cities.js"></script>
+
     <script>
     var width = 960,
         height = 500;
@@ -46,6 +53,10 @@
         .attr("height", height)
         .call(responsivefy);
 
+    var arcs = svg.append("g")
+    			  .attr("class","arcs")
+
+    
     d3.json("us.json", function(error, us) {
         if (error) throw error;
 
@@ -54,18 +65,80 @@
             .attr("class", "land")
             .attr("d", path);
 
-        // svg.insert("path", ".graticule")
-        //     .datum(topojson.mesh(us, us.objects.counties, function(a, b) { return a !== b && !(a.id / 1000 ^ b.id / 1000); }))
-        //     .attr("class", "county-boundary")
-        //     .attr("d", path);
+        // svg.selectAll(".point")
+        //    .data(cities)
+        //    .enter()
+        //    .append("circle")
+        //    .attr("r", 5)
+        //    .style("fill", "grey")
+        //    .attr("transform", function(d,i) {
+        //     return "translate(" + projection([cities[i].lon,cities[i].lat]) + ")";
+        // 	});
 
-        // svg.insert("path", ".graticule")
-        //     .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
-        //     .attr("class", "state-boundary")
-        //     .attr("d", path);
+       svg.selectAll(".point")
+           .data(arcdata)
+           .enter()
+           .append("circle")
+           .attr("r", function(d,i){
+            return arcdata[i].index;
+           })
+           .style("fill", "grey")
+           .attr("transform", function(d,i) {
+            return "translate(" + projection([arcdata[i].sourceLocation[0], arcdata[i].sourceLocation[1]]) + ")";
+            });
 
-        svg.append("circle").attr("r",5).style("fill","grey").attr("transform", function() {return "translate(" + projection([-122.431297,37.773972]) + ")";});
+        arcs.selectAll("path")
+         	.data(arcdata)
+         	.enter()
+         	.append("path")
+         	.attr("d",function(d){
+         		return lngLatToArc(d, 'sourceLocation', 'targetLocation', 15);
+         	})
+            .style("stroke-width", function(d,i){
+            return arcdata[i].index/2;
+           });
+
+        svg.append("circle")
+           .attr("r", 15)
+           .style("fill", "grey")
+           .attr("transform", function() {
+            return "translate(" + projection([-122.4194155, 37.7749295]) + ")";
+            });
+
+	
+
     });
+
+    function lngLatToArc(d, sourceName, targetName, bend){
+		// set the bend
+		bend = .8;
+		// `d[sourceName]` and `d[targetname]` are arrays of `[lng, lat]`
+		// Note, people often put these in lat then lng, but mathematically we want x then y which is `lng,lat`
+		var sourceLngLat = d[sourceName],
+				targetLngLat = d[targetName];
+		if (targetLngLat && sourceLngLat) {
+			var sourceXY = projection( sourceLngLat ),
+					targetXY = projection( targetLngLat );
+			var sourceX = sourceXY[0],
+					sourceY = sourceXY[1];
+			var targetX = targetXY[0],
+					targetY = targetXY[1];
+			var dx = targetX - sourceX,
+					dy = targetY - sourceY,
+					dr = Math.sqrt(dx * dx + dy * dy) * bend;
+			// To avoid a whirlpool effect, make the bend direction consistent regardless of whether the source is east or west of the target
+			var west_of_source = (targetX - sourceX) < 0;
+			if (west_of_source) return "M" + targetX + "," + targetY + "A" + dr + "," + dr + " 0 0,1 " + sourceX + "," + sourceY;
+			return "M" + sourceX + "," + sourceY + "A" + dr + "," + dr + " 0 0,1 " + targetX + "," + targetY;
+			
+		} else {
+			return "M0,0,l0,0z";
+		}
+	}
+
+
+
+
 
     d3.select(self.frameElement).style("height", height + "px");
 
@@ -87,5 +160,10 @@
             svg.attr("width", targetWidth);
             svg.attr("height", Math.round(targetWidth / aspect));
         }
-    }
+    };
+
+    
+
+
+
     </script>
