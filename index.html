@@ -15,9 +15,9 @@
 */
 
 .land {
-    fill: lightgrey;
-    opacity: .4;
-    stroke: darkgrey;
+    fill: #e6e6e6;
+    opacity: .3;
+    stroke: black;
     stroke-width: 1px;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .arcs path {
-    /*stroke-width: 2px;*/
+    /*stroke: url(#line-gradient);*/
     stroke: orange;
     pointer-events: none;
     opacity: .6;
@@ -57,6 +57,8 @@
         .attr("height", height)
         .call(responsivefy);
 
+    var color = d3.interpolateLab("#008000", "#c83a22");
+
     d3.json("us.json", function(error, us) {
         if (error) throw error;
 
@@ -75,14 +77,14 @@
             .data(arcdata)
             .enter()
             .append("path")
-            .attr("id",function(d,i){
-                return "curve" + i ;
+            .attr("id", function(d, i) {
+                return "curve" + i;
             })
             .attr("d", function(d) {
-                return lngLatToArc(d,'sourceLocation' ,'targetLocation',15);
+                return lngLatToArc(d, 'sourceLocation', 'targetLocation', 15);
             })
             .style("stroke-width", function(d, i) {
-                return arcdata[i].index / 2;
+                return arcdata[i].index * .5;
             });
 
         // add the name of each city
@@ -110,124 +112,227 @@
             .enter()
             .append("circle")
             .attr("r", function(d, i) {
-                return arcdata[i].index;
+                return arcdata[i].index * .6;
             })
             .style("fill", "grey")
             .attr("transform", function(d, i) {
                 return "translate(" + projection([arcdata[i].sourceLocation[0], arcdata[i].sourceLocation[1]]) + ")";
             });
 
-        // add the big point at San Francisco 
-        svg.append("circle")
-            .attr("r", 15)
-            .style("fill", "grey")
-            .attr("transform", function() {
-                return "translate(" + projection([-122.4194155, 37.7749295]) + ")";
-            });
+
+        
 
 
         // add the moving points 
 
-        // var circle = svg.selectAll(".point")
-        //     .data(arcdata)
-        //     .enter()
-        //     .append("circle")
-        //     .attr("r", 5)
-        //     .style("fill", "black")
-        //     .attr("id",function(d,i){
-        //         return "point" + i ;
-        //     })
-        //     .attr("transform", function(d, i) {
-        //         return "translate(" + projection([arcdata[i].sourceLocation[0], arcdata[i].sourceLocation[1]]) + ")";
-        //     });
+        // function createVariables() {
+        //     var circle = [];
+        //     for (var i = 0; i <= 11; i++) {
+        //         circle[i] = svg.selectAll(".point")
+        //             .data(arcdata[i])
+        //             .enter()
+        //             .append("circle")
+        //             .attr("r", 5)
+        //             .style("fill", "black")
+        //             .style("opacity", .8)
+        //             // .attr("id",function(d,i){
+        //             //     return "point" + i ;
+        //             // })
+        //             .attr("transform", function(d) {
+        //                 return "translate(" + projection([d.sourceLocation[0], d.sourceLocation[1]]) + ")";
+        //             });
+        //     }
+        // }
 
         // MOVE THE DOTS!!!!    
 
-        var line1 = svg.append("path")
-            .style("stroke","none")
+        var circle10 = svg.selectAll(".point")
+            .data(arcdata)
+            .enter()
+            .append("circle")
+            .attr("r", 3)
+            .style("fill", "grey")
+            .style("opacity",.8)
+            .attr("transform", function(d) {
+                return "translate(" + projection([arcdata[10].sourceLocation[0], arcdata[10].sourceLocation[1]]) + ")";
+            });
+
+        var line10 = svg.append("path")
+            .style("stroke", "none")
             .style("fill", "none")
             .attr("d", function(d) {
                 return lngLatToArc(arcdata[10], 'sourceLocation', 'targetLocation', 1);
-            })
-            .style("stroke-width", function(d) {
-                return arcdata[0].index / 2;
             });
 
-        var line2 = svg.append("path")
-            .style("stroke","none")
+
+        var circle9 = svg.selectAll(".point")
+            .data(arcdata)
+            .enter()
+            .append("circle")
+            .attr("r", 3)
+            .style("fill", "grey")
+            .style("opacity",.8)
+            .attr("transform", function(d) {
+                return "translate(" + projection([arcdata[9].sourceLocation[0], arcdata[9].sourceLocation[1]]) + ")";
+            });
+
+        var line9 = svg.append("path")
+            .style("stroke", "none")
             .style("fill", "none")
             .attr("d", function(d) {
                 return lngLatToArc(arcdata[9], 'sourceLocation', 'targetLocation', 1);
-            })
-            .style("stroke-width", function(d) {
-                return arcdata[0].index / 2;
             });
 
-        var line3 = svg.append("path")
-            .style("stroke","none")
+        var circle8 = svg.selectAll(".point")
+            .data(arcdata)
+            .enter()
+            .append("circle")
+            .attr("r", 3)
+            .style("fill", "grey")
+            .style("opacity",.8)
+            .attr("transform", function(d) {
+                return "translate(" + projection([arcdata[8].sourceLocation[0], arcdata[8].sourceLocation[1]]) + ")";
+            });
+
+        var line8 = svg.append("path")
+            .style("stroke", "none")
             .style("fill", "none")
             .attr("d", function(d) {
                 return lngLatToArc(arcdata[8], 'sourceLocation', 'targetLocation', 1);
-            })
-            .style("stroke-width", function(d) {
-                return arcdata[0].index / 2;
+            });
+
+         var circle7 = svg.selectAll(".point")
+            .data(arcdata)
+            .enter()
+            .append("circle")
+            .attr("r", 3)
+            .style("fill", "grey")
+            .style("opacity",.8)
+            .attr("transform", function(d) {
+                return "translate(" + projection([arcdata[7].sourceLocation[0], arcdata[7].sourceLocation[1]]) + ")";
+            });
+
+        var line7 = svg.append("path")
+            .style("stroke", "none")
+            .style("fill", "none")
+            .attr("d", function(d) {
+                return lngLatToArc(arcdata[7], 'sourceLocation', 'targetLocation', 1);
+            });
+
+        var circle6 = svg.selectAll(".point")
+            .data(arcdata)
+            .enter()
+            .append("circle")
+            .attr("r", 3)
+            .style("fill", "grey")
+            .style("opacity",.8)
+            .attr("transform", function(d) {
+                return "translate(" + projection([arcdata[6].sourceLocation[0], arcdata[6].sourceLocation[1]]) + ")";
+            });
+
+        var line6 = svg.append("path")
+            .style("stroke", "none")
+            .style("fill", "none")
+            .attr("d", function(d) {
+                return lngLatToArc(arcdata[6], 'sourceLocation', 'targetLocation', 1);
+            });
+
+        var circle5 = svg.selectAll(".point")
+            .data(arcdata)
+            .enter()
+            .append("circle")
+            .attr("r", 3)
+            .style("fill", "grey")
+            .style("opacity",.8)
+            .attr("transform", function(d) {
+                return "translate(" + projection([arcdata[5].sourceLocation[0], arcdata[5].sourceLocation[1]]) + ")";
+            });
+
+        var line5 = svg.append("path")
+            .style("stroke", "none")
+            .style("fill", "none")
+            .attr("d", function(d) {
+                return lngLatToArc(arcdata[5], 'sourceLocation', 'targetLocation', 1);
             });
 
 
 
-        var circle1 = svg.append("circle")
-            .attr("r", 5)
-            .style("fill","grey")
-             .attr("transform", function(d, i) {
-                return "translate(" + projection([arcdata[0].sourceLocation[0], arcdata[0].sourceLocation[1]]) + ")";
-            });
+        transition();
 
 
-        var circle2 = svg.append("circle")
-            .attr("r", 5)
-            .style("fill","grey")
-             .attr("transform", function(d, i) {
-                return "translate(" + projection([arcdata[0].sourceLocation[0], arcdata[0].sourceLocation[1]]) + ")";
-            });
+        function transition() {
+            circle10.transition()
+                .delay(function(d,i){
+                    return  i * 300;
+                })
+                .duration(5000)
+                .attrTween("transform", translateAlong(line10.node()))
+                .each("end", transition);
 
-        var circle3 = svg.append("circle")
-            .attr("r", 5)
-            .style("fill","grey")
-             .attr("transform", function(d, i) {
-                return "translate(" + projection([arcdata[0].sourceLocation[0], arcdata[0].sourceLocation[1]]) + ")";
-            });
+            circle9.transition()
+                .delay(function(d,i){
+                    return  i * 200;
+                })
+                .duration(5000)
+                .attrTween("transform", translateAlong(line9.node()))
+                .each("end", transition);
 
-        transition1();
-        transition2();
-        transition3();
+            circle8.transition()
+                .delay(function(d,i){
+                    return  i * 250;
+                })
+                .duration(5000)
+                .attrTween("transform", translateAlong(line8.node()))
+                .each("end", transition);
 
-        function transition1() {
-            circle1.transition()
-                .duration(1500)
-                .attrTween("transform", translateAlong(line1.node()))
-                .each("end", transition1);
+            circle7.transition()
+                .delay(function(d,i){
+                    return  i * 350;
+                })
+                .duration(5000)
+                .attrTween("transform", translateAlong(line7.node()))
+                .each("end", transition);
+
+            circle6.transition()
+                .delay(function(d,i){
+                    return  i * 300;
+                })
+                .duration(5000)
+                .attrTween("transform", translateAlong(line6.node()))
+                .each("end", transition);
+
+            circle5.transition()
+                .delay(function(d,i){
+                    return  i * 200;
+                })
+                .duration(5000)
+                .attrTween("transform", translateAlong(line5.node()))
+                .each("end", transition);
         }
 
-        function transition2() {
-            circle2.transition()
-                .duration(1500)
-                .attrTween("transform", translateAlong(line2.node()))
-                .each("end", transition2);
-        }
+        // add the image/circle at San Francisco 
+        svg.append("image")
+            .attr("xlink:href","football.png")
+            .attr("transform", function() {
+                return "translate(" + projection([-123.9194155, 38.7749295]) + ")" ;})
+            .attr("width",40)
+            .attr("height",40);
 
-        function transition3() {
-            circle3.transition()
-                .duration(1500)
-                .attrTween("transform", translateAlong(line3.node()))
-                .each("end", transition3);
-        }
+        // svg.append("circle")
+        //     .attr("r", 10)
+        //     .style("fill", "black")
+        //     .attr("transform", function() {
+        //         return "translate(" + projection([-122.4194155, 37.7749295]) + ")";
+        //     });
+
+
 
         // Returns an attrTween for translating along the specified path element.
         function translateAlong(path) {
             var l = path.getTotalLength();
             return function(d, i, a) {
                 return function(t) {
-                    var p = path.getPointAtLength(t * l);
+                    var p = path.getPointAtLength((1-t) * l);
                     return "translate(" + p.x + "," + p.y + ")";
                 };
             };
@@ -236,10 +341,8 @@
     });
 
     function lngLatToArc(d, sourceName, targetName, bend) {
-        // set the bend
         bend = 1;
-        // `d[sourceName]` and `d[targetname]` are arrays of `[lng, lat]`
-        // Note, people often put these in lat then lng, but mathematically we want x then y which is `lng,lat`
+       
         var sourceLngLat = d[sourceName],
             targetLngLat = d[targetName];
         if (targetLngLat && sourceLngLat) {
@@ -287,4 +390,6 @@
             svg.attr("height", Math.round(targetWidth / aspect));
         }
     };
+
+
     </script>
