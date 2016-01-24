@@ -27,7 +27,6 @@ body {
 }
 
 .arcs path {
-    /*stroke: orange;*/
     pointer-events: none;
     /* opacity: .6;*/
     fill: none;
@@ -39,12 +38,14 @@ body {
 
 #tooltip p {
     margin: 0;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 #tooltip {
     position: absolute;
-    width: 20%;
+    width: 50%;
+    left:25%;
+    top:0px;
     height: auto;
     padding: 10px;
     background-color: white;
@@ -55,6 +56,10 @@ body {
     -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     pointer-events: none;
+}
+
+#graphic{
+    margin-top: 20px;
 }
 </style>
 
@@ -67,6 +72,9 @@ body {
     <script type="text/javascript" src="js/topojson.v1.min.js"></script>
     <script src="cities.js"></script>
     <script>
+    var screenHeight = $(window).height();
+    var screenWidth = $(window).width();
+
     var width = 960,
         height = 500;
 
@@ -321,6 +329,8 @@ body {
             .attr("height", 40);
 
 
+        
+
         // add a point on where the cities are
 
         svg.selectAll(".point")
@@ -334,28 +344,24 @@ body {
             .attr("cursor","pointer")
             .attr("transform", function(d, i) {
                 return "translate(" + projection([arcdata[i].sourceLocation[0], arcdata[i].sourceLocation[1]]) + ")";
-            });
-            // .on("click", function(d) {
+            })
+            .on("click", function(d) {
 
-            //     var text = d3.select(this)[0][0].__data__.text;
-            //     var x = d3.select(this)[0][0].__data__.sourceLocation[0];
-            //     var y = d3.select(this)[0][0].__data__.sourceLocation[1];
+                var text = d3.select(this)[0][0].__data__.tooltip;
+                var x = d3.select(this)[0][0].__data__.sourceLocation[0];
+                var y = d3.select(this)[0][0].__data__.sourceLocation[1];
 
-            //     d3.select("#tooltip")
-            //         .style("left", width)
-            //         .style("top", height)
-            //         .select("#value")
-            //         .text(text)
-            //         .attr("transform", function() {
-            //             return "translate(" + projection([x, y]) + ")";
-            //         })
+                d3.select("#tooltip")
+                    .select("#value")
+                    .text(text);
+                   
 
-            //     d3.select("#tooltip").classed("hidden", false);
-            // })
+                d3.select("#tooltip").classed("hidden", false);
+            })
 
-        // .on("mouseout", function() {
-        //     d3.select("#tooltip").classed("hidden", true);
-        // });
+        .on("mouseout", function() {
+            d3.select("#tooltip").classed("hidden", true);
+        });
 
 
         // add the name of each city
@@ -373,7 +379,6 @@ body {
             .attr("transform", function(d, i) {
                 return "translate(" + projection([arcdata[i].sourceLocation[0], (arcdata[i].sourceLocation[1] + .6)]) + ")";
             });
-
 
 
 
@@ -425,7 +430,7 @@ body {
 
         var container = d3.select(svg.node().parentNode),
             width = parseInt(svg.style("width")),
-            height = parseInt(svg.style("height")),
+            height = parseInt(svg.style("height")) ,
             aspect = width / height;
 
         svg.attr("viewBox", "0 0 " + width + " " + height)
@@ -440,4 +445,5 @@ body {
             svg.attr("height", Math.round(targetWidth / aspect));
         }
     };
+
     </script>
