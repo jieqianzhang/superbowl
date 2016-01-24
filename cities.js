@@ -3,7 +3,7 @@ var arcdata = [{
     targetLocation: [-122.4194155, 37.7749295],
     city: "Phoenix",
     index: 12,
-    tooltip: "Lorem Ipsum is 1",
+    tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "30%",
         color: "lightblue"
@@ -13,7 +13,7 @@ var arcdata = [{
     targetLocation: [-122.4194155, 37.7749295],
     city: "Los Angeles",
     index: 5,
-    tooltip: "Lorem Ipsum is 2",
+    tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "20%",
         color: "lightblue"
@@ -23,7 +23,7 @@ var arcdata = [{
     targetLocation: [-122.4194155, 37.7749295],
     city: "San Diego",
     index: 7,
-    tooltip: "Lorem Ipsum is 2",
+    tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "22%",
         color: "lightblue"
@@ -35,7 +35,7 @@ var arcdata = [{
     targetLocation: [-122.4194155, 37.7749295],
     city: "Las Vegas",
     index: 8,
-    tooltip: "Lorem Ipsum is 3",
+    tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "30%",
         color: "lightblue"
@@ -45,7 +45,7 @@ var arcdata = [{
     targetLocation: [-122.4194155, 37.7749295],
     city: "Portland",
     index: 5,
-    tooltip: "Lorem Ipsum is 2",
+    tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "20%",
         color: "lightblue"
@@ -65,7 +65,7 @@ var arcdata = [{
     targetLocation: [-122.4194155, 37.7749295],
     city: "Denver",
     index: 8,
-    tooltip: "Lorem Ipsum is 2",
+    tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "40%",
         color: "lightblue"
@@ -75,7 +75,7 @@ var arcdata = [{
     targetLocation: [-122.4194155, 37.7749295],
     city: "Minneapolis",
     index: 9,
-    tooltip: "Lorem Ipsum is 2",
+    tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "50%",
         color: "lightblue"
@@ -85,7 +85,7 @@ var arcdata = [{
     targetLocation: [-122.4194155, 37.7749295],
     city: "Kansas City",
     index: 14,
-    tooltip: "Lorem Ipsum is 2",
+    tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "50%",
         color: "lightblue"
@@ -95,7 +95,7 @@ var arcdata = [{
     targetLocation: [-122.4194155, 37.7749295],
     city: "St. Louis",
     index: 10,
-    tooltip: "Lorem Ipsum is 2",
+    tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "50%",
         color: "lightblue"
@@ -105,7 +105,7 @@ var arcdata = [{
     targetLocation: [-122.4194155, 37.7749295],
     city: "Dallas",
     index: 12,
-    tooltip: "Lorem Ipsum is 2",
+    tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "50%",
         color: "lightblue"
