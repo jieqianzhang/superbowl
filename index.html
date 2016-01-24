@@ -28,9 +28,8 @@ body {
 
 .arcs path {
     /*stroke: orange;*/
-    /*stroke: url(#line-gradient);*/
     pointer-events: none;
-   /* opacity: .6;*/
+    /* opacity: .6;*/
     fill: none;
 }
 
@@ -145,79 +144,6 @@ body {
             });
 
 
-        // add the name of each city
-
-        svg.selectAll("text")
-            .data(arcdata)
-            .enter()
-            .append("text")
-            .style("fill", "black")
-            .style("font-size", 12)
-            .attr("text-anchor", "middle")
-            .text(function(d, i) {
-                return arcdata[i].city;
-            })
-            .attr("transform", function(d, i) {
-                return "translate(" + projection([arcdata[i].sourceLocation[0], (arcdata[i].sourceLocation[1] + .8)]) + ")";
-            });
-
-
-
-        // add a point on where the city is 
-
-        svg.selectAll(".point")
-            .data(arcdata)
-            .enter()
-            .append("circle")
-            .attr("r", function(d, i) {
-                return arcdata[i].index * .6;
-            })
-            .style("fill", "grey")
-            .attr("transform", function(d, i) {
-                return "translate(" + projection([arcdata[i].sourceLocation[0], arcdata[i].sourceLocation[1]]) + ")";
-            })
-            .on("click", function(d) {
-                // var xPosition = parseFloat(d3.select(this).attr("x"));
-                // var yPosition = parseFloat(d3.select(this).attr("y"));
-                d3.select("#tooltip")
-                    .style("right", 0)
-                    .style("bottom", 0)
-                    .select("#value")
-                    .text(function(d, i) {
-                        return arcdata[i].text;
-                    });
-
-                d3.select("#tooltip").classed("hidden", false);
-            })
-
-        .on("mouseout", function() {
-            d3.select("#tooltip").classed("hidden", true);
-        });
-
-
-
-
-
-        // add the moving points 
-
-        // function createVariables() {
-        //     var circle = [];
-        //     for (var i = 0; i <= 11; i++) {
-        //         circle[i] = svg.selectAll(".point")
-        //             .data(arcdata[i])
-        //             .enter()
-        //             .append("circle")
-        //             .attr("r", 5)
-        //             .style("fill", "black")
-        //             .style("opacity", .8)
-        //             // .attr("id",function(d,i){
-        //             //     return "point" + i ;
-        //             // })
-        //             .attr("transform", function(d) {
-        //                 return "translate(" + projection([d.sourceLocation[0], d.sourceLocation[1]]) + ")";
-        //             });
-        //     }
-        // }
 
         // MOVE THE DOTS!!!!    
 
@@ -394,12 +320,60 @@ body {
             .attr("width", 40)
             .attr("height", 40);
 
-        // svg.append("circle")
-        //     .attr("r", 10)
-        //     .style("fill", "black")
-        //     .attr("transform", function() {
-        //         return "translate(" + projection([-122.4194155, 37.7749295]) + ")";
-        //     });
+
+        // add a point on where the cities are
+
+        svg.selectAll(".point")
+            .data(arcdata)
+            .enter()
+            .append("circle")
+            .attr("r", function(d, i) {
+                return arcdata[i].index * .6;
+            })
+            .style("fill", "grey")
+            .attr("cursor","pointer")
+            .attr("transform", function(d, i) {
+                return "translate(" + projection([arcdata[i].sourceLocation[0], arcdata[i].sourceLocation[1]]) + ")";
+            });
+            // .on("click", function(d) {
+
+            //     var text = d3.select(this)[0][0].__data__.text;
+            //     var x = d3.select(this)[0][0].__data__.sourceLocation[0];
+            //     var y = d3.select(this)[0][0].__data__.sourceLocation[1];
+
+            //     d3.select("#tooltip")
+            //         .style("left", width)
+            //         .style("top", height)
+            //         .select("#value")
+            //         .text(text)
+            //         .attr("transform", function() {
+            //             return "translate(" + projection([x, y]) + ")";
+            //         })
+
+            //     d3.select("#tooltip").classed("hidden", false);
+            // })
+
+        // .on("mouseout", function() {
+        //     d3.select("#tooltip").classed("hidden", true);
+        // });
+
+
+        // add the name of each city
+
+        svg.selectAll("text")
+            .data(arcdata)
+            .enter()
+            .append("text")
+            .style("fill", "black")
+            .style("font-size", 11)
+            .attr("text-anchor", "middle")
+            .text(function(d, i) {
+                return arcdata[i].city;
+            })
+            .attr("transform", function(d, i) {
+                return "translate(" + projection([arcdata[i].sourceLocation[0], (arcdata[i].sourceLocation[1] + .6)]) + ")";
+            });
+
 
 
 
