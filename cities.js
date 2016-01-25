@@ -1,6 +1,8 @@
 var arcdata = [{
     sourceLocation: [-112.0737951, 33.44818315],
     targetLocation: [-122.4194155, 37.7749295],
+    city: "Phoenix",
+    index: 12,
     tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "30%",
@@ -14,8 +16,6 @@ var arcdata = [{
     index: 5,
     tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
-    city: "Phoenix",
-    index: 12,
      offset: "20%",
         color: "lightblue"
     }],
