@@ -151,20 +151,20 @@ body {
                 return arcdata[i].gradient[0].color;
             });
 
-
-
         // MOVE THE DOTS!!!!    
 
         var circle10 = svg.selectAll(".point")
-            .data(arcdata)
+            .data(arcdata[10].byTime)
             .enter()
             .append("circle")
             .attr("r", 2)
-            .style("fill", "grey")
-            .style("opacity", .8)
-            .attr("transform", function(d) {
-                return "translate(" + projection([arcdata[10].sourceLocation[0], arcdata[10].sourceLocation[1]]) + ")";
-            });
+            .style("fill", function(d){
+                return d.color
+            })
+            .style("opacity", .8);
+            // .attr("transform", function(d) {
+            //     return "translate(" + projection([arcdata[10].sourceLocation[0], arcdata[10].sourceLocation[1]]) + ")";
+            // });
 
         var line10 = svg.append("path")
             .style("stroke", "none")
@@ -175,15 +175,13 @@ body {
 
 
         var circle9 = svg.selectAll(".point")
-            .data(arcdata)
+            .data(arcdata[9].byTime)
             .enter()
             .append("circle")
-            .attr("r", 3)
+            .attr("r", 2)
             .style("fill", "grey")
-            .style("opacity", .8)
-            .attr("transform", function(d) {
-                return "translate(" + projection([arcdata[9].sourceLocation[0], arcdata[9].sourceLocation[1]]) + ")";
-            });
+            .style("opacity", .8);
+           
 
         var line9 = svg.append("path")
             .style("stroke", "none")
@@ -193,16 +191,14 @@ body {
             });
 
         var circle8 = svg.selectAll(".point")
-            .data(arcdata)
+            .data(arcdata[8].byTime)
             .enter()
             .append("circle")
-            .attr("r", 3)
+            .attr("r", 2)
             .style("fill", "grey")
-            .style("opacity", .8)
-            .attr("transform", function(d) {
-                return "translate(" + projection([arcdata[8].sourceLocation[0], arcdata[8].sourceLocation[1]]) + ")";
-            });
+            .style("opacity", .8);
 
+            
         var line8 = svg.append("path")
             .style("stroke", "none")
             .style("fill", "none")
@@ -211,15 +207,13 @@ body {
             });
 
         var circle7 = svg.selectAll(".point")
-            .data(arcdata)
+            .data(arcdata[7].byTime)
             .enter()
             .append("circle")
-            .attr("r", 3)
+            .attr("r", 2)
             .style("fill", "grey")
-            .style("opacity", .8)
-            .attr("transform", function(d) {
-                return "translate(" + projection([arcdata[7].sourceLocation[0], arcdata[7].sourceLocation[1]]) + ")";
-            });
+            .style("opacity", .8);
+           
 
         var line7 = svg.append("path")
             .style("stroke", "none")
@@ -229,15 +223,13 @@ body {
             });
 
         var circle6 = svg.selectAll(".point")
-            .data(arcdata)
+            .data(arcdata[6].byTime)
             .enter()
             .append("circle")
-            .attr("r", 3)
+            .attr("r", 2)
             .style("fill", "grey")
-            .style("opacity", .8)
-            .attr("transform", function(d) {
-                return "translate(" + projection([arcdata[6].sourceLocation[0], arcdata[6].sourceLocation[1]]) + ")";
-            });
+            .style("opacity", .8);
+        
 
         var line6 = svg.append("path")
             .style("stroke", "none")
@@ -247,15 +239,13 @@ body {
             });
 
         var circle5 = svg.selectAll(".point")
-            .data(arcdata)
+            .data(arcdata[5].byTime)
             .enter()
             .append("circle")
-            .attr("r", 3)
+            .attr("r", 2)
             .style("fill", "grey")
-            .style("opacity", .8)
-            .attr("transform", function(d) {
-                return "translate(" + projection([arcdata[5].sourceLocation[0], arcdata[5].sourceLocation[1]]) + ")";
-            });
+            .style("opacity", .8);
+           
 
         var line5 = svg.append("path")
             .style("stroke", "none")
@@ -265,6 +255,92 @@ body {
             });
 
 
+        var circle4 = svg.selectAll(".point")
+            .data(arcdata[4].byTime)
+            .enter()
+            .append("circle")
+            .attr("r", 2)
+            .style("fill", "grey")
+            .style("opacity", .8);
+           
+
+        var line4 = svg.append("path")
+            .style("stroke", "none")
+            .style("fill", "none")
+            .attr("d", function(d) {
+                return lngLatToArc(arcdata[4], 'sourceLocation', 'targetLocation', 1);
+            });
+
+        var circle3 = svg.selectAll(".point")
+            .data(arcdata[3].byTime)
+            .enter()
+            .append("circle")
+            .attr("r", 2)
+            .style("fill", "grey")
+            .style("opacity", .8);
+           
+
+        var line3 = svg.append("path")
+            .style("stroke", "none")
+            .style("fill", "none")
+            .attr("d", function(d) {
+                return lngLatToArc(arcdata[3], 'sourceLocation', 'targetLocation', 1);
+            });
+
+
+        var circle2 = svg.selectAll(".point")
+            .data(arcdata[2].byTime)
+            .enter()
+            .append("circle")
+            .attr("r", 2)
+            .style("fill", "grey")
+            .style("opacity", .8);
+           
+
+        var line2 = svg.append("path")
+            .style("stroke", "none")
+            .style("fill", "none")
+            .attr("d", function(d) {
+                return lngLatToArc(arcdata[2], 'sourceLocation', 'targetLocation', 1);
+            });
+
+        var circle1 = svg.selectAll(".point")
+            .data(arcdata[1].byTime)
+            .enter()
+            .append("circle")
+            .attr("r", 2)
+            .style("fill", "grey")
+            .style("opacity", .8);
+           
+
+        var line1 = svg.append("path")
+            .style("stroke", "none")
+            .style("fill", "none")
+            .attr("d", function(d) {
+                return lngLatToArc(arcdata[1], 'sourceLocation', 'targetLocation', 1);
+            });
+
+        var circle0 = svg.selectAll(".point")
+            .data(arcdata[0].byTime)
+            .enter()
+            .append("circle")
+            .attr("r", 2)
+            .style("fill", "grey")
+            .style("opacity", .8);
+           
+
+        var line0 = svg.append("path")
+            .style("stroke", "none")
+            .style("fill", "none")
+            .attr("d", function(d) {
+                return lngLatToArc(arcdata[0], 'sourceLocation', 'targetLocation', 1);
+            });
+
+
+
+
+
+
 
         transition();
 
@@ -272,7 +348,7 @@ body {
         function transition() {
             circle10.transition()
                 .delay(function(d, i) {
-                    return i * 300;
+                    return i * 200;
                 })
                 .duration(5000)
                 .attrTween("transform", translateAlong(line10.node()))
@@ -288,7 +364,7 @@ body {
 
             circle8.transition()
                 .delay(function(d, i) {
-                    return i * 250;
+                    return i * 200;
                 })
                 .duration(5000)
                 .attrTween("transform", translateAlong(line8.node()))
@@ -296,7 +372,7 @@ body {
 
             circle7.transition()
                 .delay(function(d, i) {
-                    return i * 350;
+                    return i * 200;
                 })
                 .duration(5000)
                 .attrTween("transform", translateAlong(line7.node()))
@@ -304,7 +380,7 @@ body {
 
             circle6.transition()
                 .delay(function(d, i) {
-                    return i * 300;
+                    return i * 200;
                 })
                 .duration(5000)
                 .attrTween("transform", translateAlong(line6.node()))
@@ -316,6 +392,46 @@ body {
                 })
                 .duration(5000)
                 .attrTween("transform", translateAlong(line5.node()))
+                .each("end", transition);
+
+            circle4.transition()
+                .delay(function(d, i) {
+                    return i * 200;
+                })
+                .duration(5000)
+                .attrTween("transform", translateAlong(line4.node()))
+                .each("end", transition);
+
+            circle3.transition()
+                .delay(function(d, i) {
+                    return i * 200;
+                })
+                .duration(5000)
+                .attrTween("transform", translateAlong(line3.node()))
+                .each("end", transition);
+
+            circle2.transition()
+                .delay(function(d, i) {
+                    return i * 200;
+                })
+                .duration(5000)
+                .attrTween("transform", translateAlong(line2.node()))
+                .each("end", transition);
+
+            circle1.transition()
+                .delay(function(d, i) {
+                    return i * 200;
+                })
+                .duration(5000)
+                .attrTween("transform", translateAlong(line1.node()))
+                .each("end", transition);
+
+            circle0.transition()
+                .delay(function(d, i) {
+                    return i * 200;
+                })
+                .duration(5000)
+                .attrTween("transform", translateAlong(line0.node()))
                 .each("end", transition);
         }
 
