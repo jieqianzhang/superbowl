@@ -6,7 +6,7 @@ var arcdata = [{
     tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "30%",
-        color: "lightblue"
+        color: "#b7ddfa"
     }],
     byTime:[{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none   "},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none   "},{time: "1", color:"grey"},{time: "1", color:"none   "},{time: "1", color:"grey"}]
 }, {
@@ -17,7 +17,7 @@ var arcdata = [{
     tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
      offset: "20%",
-        color: "lightblue"
+        color: "#b7ddfa"
     }],
     byTime:[{time: "1", color:"none   "},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"}]
 }, {
@@ -28,7 +28,7 @@ var arcdata = [{
     tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "22%",
-        color: "lightblue"
+        color: "#b7ddfa"
     }],
     byTime:[{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"}]
 
@@ -40,7 +40,7 @@ var arcdata = [{
     tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "30%",
-        color: "lightblue"
+        color: "#b7ddfa"
     }],
     byTime:[{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"}]
 }, {
@@ -51,7 +51,7 @@ var arcdata = [{
     tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "20%",
-        color: "lightblue"
+        color: "#b7ddfa"
     }],
     byTime:[{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"}]
 }, {
@@ -62,7 +62,7 @@ var arcdata = [{
     tooltip: "Seattle Seahawks fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "20%",
-        color: "lightblue"
+        color: "#b7ddfa"
     }],
     byTime:[{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"}]
 }, {
@@ -73,7 +73,7 @@ var arcdata = [{
     tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "40%",
-        color: "lightblue"
+        color: "#b7ddfa"
     }],
     byTime:[{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"}]
 }, {
@@ -84,7 +84,7 @@ var arcdata = [{
     tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "50%",
-        color: "lightblue"
+        color: "#b7ddfa"
     }],
     byTime:[{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"}]
 }, {
@@ -95,7 +95,7 @@ var arcdata = [{
     tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "50%",
-        color: "lightblue"
+        color: "#b7ddfa"
     }],
     byTime:[{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"}]
 }, {
@@ -106,7 +106,7 @@ var arcdata = [{
     tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "50%",
-        color: "lightblue"
+        color: "#b7ddfa"
     }],
     byTime:[{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"}]
 }, {
@@ -117,7 +117,7 @@ var arcdata = [{
     tooltip: "XXXX fans are the #1 most loyal NFL team in America. Throughout the NFL season, they searched the most for flights to the Super Bowl",
     gradient: [{
         offset: "50%",
-        color: "lightblue"
+        color: "#b7ddfa"
     }],
     byTime:[{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"none"},{time: "1", color:"none"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"}]
 }]
