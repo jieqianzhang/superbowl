@@ -32,23 +32,30 @@ body {
     fill: none;
 }
 
+
+
+/*#table{
+    width:50%;
+}
+
 #tooltip.hidden {
     display: none;
 }
 
 #tooltip p {
     margin: 0;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 #tooltip {
     position: absolute;
-    width: 50%;
-    left:25%;
-    top:0px;
+    width: 25%;
+    top: 30px;
+    right: 5px;
     height: auto;
     padding: 10px;
-    background-color: white;
+    background-color: #e6e6e6;
+    opacity: .8;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -56,15 +63,14 @@ body {
     -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     pointer-events: none;
-}
+}*/
 
-#graphic{
-    margin-top: 20px;
-}
+
 </style>
 
 <body>
     <div id="graphic"></div>
+    <div id="table"></div>
     <div id="tooltip" class="hidden">
         <p><span id="value"></span></p>
     </div>
@@ -75,12 +81,12 @@ body {
     var screenHeight = $(window).height();
     var screenWidth = $(window).width();
 
-    var width = 960,
-        height = 500;
+    var width = 960;
+    var height = 500;
 
     var projection = d3.geo.albersUsa()
         .scale(1000)
-        .translate([width / 2, height / 2]);
+        .translate([width / 2 - 80, height / 2]);
 
     var path = d3.geo.path()
         .projection(projection);
@@ -109,14 +115,12 @@ body {
             .data(arcdata)
             .enter()
             .append("path")
-            // .attr("id", function(d, i) {
-            //     return "curve" + i;
-            // })
+            .style("opacity", .8)
             .attr("d", function(d) {
                 return lngLatToArc(d, 'sourceLocation', 'targetLocation', 15);
             })
             .style("stroke-width", function(d, i) {
-                return arcdata[i].index * .5;
+                return arcdata[i].index * .1;
             })
             .style("stroke", function(d, i) {
                 return "url(#line-gradient" + i + ")";
@@ -141,7 +145,7 @@ body {
 
         gradient.append("stop")
             .attr("offset", "0%")
-            .attr("stop-color", "#f97034");
+            .attr("stop-color", "orange");
 
         gradient.append("stop")
             .attr("offset", function(d, i) {
@@ -153,287 +157,52 @@ body {
 
         // MOVE THE DOTS!!!!    
 
-        var circle10 = svg.selectAll(".point")
-            .data(arcdata[10].byTime)
-            .enter()
-            .append("circle")
-            .attr("r", 2)
-            .style("fill", function(d){
-                return d.color
-            })
-            .style("opacity", .8);
-            // .attr("transform", function(d) {
-            //     return "translate(" + projection([arcdata[10].sourceLocation[0], arcdata[10].sourceLocation[1]]) + ")";
-            // });
-
-        var line10 = svg.append("path")
-            .style("stroke", "none")
-            .style("fill", "none")
-            .attr("d", function(d) {
-                return lngLatToArc(arcdata[10], 'sourceLocation', 'targetLocation', 1);
-            });
+        for (var i = 0; i < 28; i++) {
 
 
-        var circle9 = svg.selectAll(".point")
-            .data(arcdata[9].byTime)
-            .enter()
-            .append("circle")
-            .attr("r", 2)
-            .style("fill", "grey")
-            .style("opacity", .8);
-           
+            var k = svg.append("path")
+                .style("stroke", "none")
+                .style("fill", "none")
+                .attr("d", function(d) {
+                    return lngLatToArc(arcdata[i], 'sourceLocation', 'targetLocation', 1);
+                });
 
-        var line9 = svg.append("path")
-            .style("stroke", "none")
-            .style("fill", "none")
-            .attr("d", function(d) {
-                return lngLatToArc(arcdata[9], 'sourceLocation', 'targetLocation', 1);
-            });
-
-        var circle8 = svg.selectAll(".point")
-            .data(arcdata[8].byTime)
-            .enter()
-            .append("circle")
-            .attr("r", 2)
-            .style("fill", "grey")
-            .style("opacity", .8);
-
-            
-        var line8 = svg.append("path")
-            .style("stroke", "none")
-            .style("fill", "none")
-            .attr("d", function(d) {
-                return lngLatToArc(arcdata[8], 'sourceLocation', 'targetLocation', 1);
-            });
-
-        var circle7 = svg.selectAll(".point")
-            .data(arcdata[7].byTime)
-            .enter()
-            .append("circle")
-            .attr("r", 2)
-            .style("fill", "grey")
-            .style("opacity", .8);
-           
-
-        var line7 = svg.append("path")
-            .style("stroke", "none")
-            .style("fill", "none")
-            .attr("d", function(d) {
-                return lngLatToArc(arcdata[7], 'sourceLocation', 'targetLocation', 1);
-            });
-
-        var circle6 = svg.selectAll(".point")
-            .data(arcdata[6].byTime)
-            .enter()
-            .append("circle")
-            .attr("r", 2)
-            .style("fill", "grey")
-            .style("opacity", .8);
-        
-
-        var line6 = svg.append("path")
-            .style("stroke", "none")
-            .style("fill", "none")
-            .attr("d", function(d) {
-                return lngLatToArc(arcdata[6], 'sourceLocation', 'targetLocation', 1);
-            });
-
-        var circle5 = svg.selectAll(".point")
-            .data(arcdata[5].byTime)
-            .enter()
-            .append("circle")
-            .attr("r", 2)
-            .style("fill", "grey")
-            .style("opacity", .8);
-           
-
-        var line5 = svg.append("path")
-            .style("stroke", "none")
-            .style("fill", "none")
-            .attr("d", function(d) {
-                return lngLatToArc(arcdata[5], 'sourceLocation', 'targetLocation', 1);
-            });
-
-
-        var circle4 = svg.selectAll(".point")
-            .data(arcdata[4].byTime)
-            .enter()
-            .append("circle")
-            .attr("r", 2)
-            .style("fill", "grey")
-            .style("opacity", .8);
-           
-
-        var line4 = svg.append("path")
-            .style("stroke", "none")
-            .style("fill", "none")
-            .attr("d", function(d) {
-                return lngLatToArc(arcdata[4], 'sourceLocation', 'targetLocation', 1);
-            });
-
-        var circle3 = svg.selectAll(".point")
-            .data(arcdata[3].byTime)
-            .enter()
-            .append("circle")
-            .attr("r", 2)
-            .style("fill", "grey")
-            .style("opacity", .8);
-           
-
-        var line3 = svg.append("path")
-            .style("stroke", "none")
-            .style("fill", "none")
-            .attr("d", function(d) {
-                return lngLatToArc(arcdata[3], 'sourceLocation', 'targetLocation', 1);
-            });
-
-
-        var circle2 = svg.selectAll(".point")
-            .data(arcdata[2].byTime)
-            .enter()
-            .append("circle")
-            .attr("r", 2)
-            .style("fill", "grey")
-            .style("opacity", .8);
-           
-
-        var line2 = svg.append("path")
-            .style("stroke", "none")
-            .style("fill", "none")
-            .attr("d", function(d) {
-                return lngLatToArc(arcdata[2], 'sourceLocation', 'targetLocation', 1);
-            });
-
-        var circle1 = svg.selectAll(".point")
-            .data(arcdata[1].byTime)
-            .enter()
-            .append("circle")
-            .attr("r", 2)
-            .style("fill", "grey")
-            .style("opacity", .8);
-           
-
-        var line1 = svg.append("path")
-            .style("stroke", "none")
-            .style("fill", "none")
-            .attr("d", function(d) {
-                return lngLatToArc(arcdata[1], 'sourceLocation', 'targetLocation', 1);
-            });
-
-        var circle0 = svg.selectAll(".point")
-            .data(arcdata[0].byTime)
-            .enter()
-            .append("circle")
-            .attr("r", 2)
-            .style("fill", "grey")
-            .style("opacity", .8);
-           
-
-        var line0 = svg.append("path")
-            .style("stroke", "none")
-            .style("fill", "none")
-            .attr("d", function(d) {
-                return lngLatToArc(arcdata[0], 'sourceLocation', 'targetLocation', 1);
-            });
-
-
-
-
-
-
-
-        transition();
-
-
-        function transition() {
-            circle10.transition()
-                .delay(function(d, i) {
-                    return i * 200;
+            var l = svg.selectAll(".point")
+                .data(arcdata[i].byTime)
+                .enter()
+                .append("circle")
+                .attr("r", function(d) {
+                    return arcdata[i].index * .05;
                 })
-                .duration(5000)
-                .attrTween("transform", translateAlong(line10.node()))
-                .each("end", transition);
+                .style("fill", "grey")
+                .style("opacity", .6);
 
-            circle9.transition()
-                .delay(function(d, i) {
-                    return i * 200;
-                })
-                .duration(5000)
-                .attrTween("transform", translateAlong(line9.node()))
-                .each("end", transition);
+            var transformLine = translateAlong(k.node());
 
-            circle8.transition()
+            l.transition()
                 .delay(function(d, i) {
-                    return i * 200;
+                    return i * 100;
                 })
-                .duration(5000)
-                .attrTween("transform", translateAlong(line8.node()))
-                .each("end", transition);
+                .duration(4000)
+                .attrTween("transform", transformLine);
+            // .each("end", transition)
 
-            circle7.transition()
-                .delay(function(d, i) {
-                    return i * 200;
-                })
-                .duration(5000)
-                .attrTween("transform", translateAlong(line7.node()))
-                .each("end", transition);
-
-            circle6.transition()
-                .delay(function(d, i) {
-                    return i * 200;
-                })
-                .duration(5000)
-                .attrTween("transform", translateAlong(line6.node()))
-                .each("end", transition);
-
-            circle5.transition()
-                .delay(function(d, i) {
-                    return i * 200;
-                })
-                .duration(5000)
-                .attrTween("transform", translateAlong(line5.node()))
-                .each("end", transition);
-
-            circle4.transition()
-                .delay(function(d, i) {
-                    return i * 200;
-                })
-                .duration(5000)
-                .attrTween("transform", translateAlong(line4.node()))
-                .each("end", transition);
-
-            circle3.transition()
-                .delay(function(d, i) {
-                    return i * 200;
-                })
-                .duration(5000)
-                .attrTween("transform", translateAlong(line3.node()))
-                .each("end", transition);
-
-            circle2.transition()
-                .delay(function(d, i) {
-                    return i * 200;
-                })
-                .duration(5000)
-                .attrTween("transform", translateAlong(line2.node()))
-                .each("end", transition);
-
-            circle1.transition()
-                .delay(function(d, i) {
-                    return i * 200;
-                })
-                .duration(5000)
-                .attrTween("transform", translateAlong(line1.node()))
-                .each("end", transition);
-
-            circle0.transition()
-                .delay(function(d, i) {
-                    return i * 200;
-                })
-                .duration(5000)
-                .attrTween("transform", translateAlong(line0.node()))
-                .each("end", transition);
         }
+
+        // transition();
+
+
+        // function transition() {
+        // circle10.transition()
+        //     .delay(function(d, i) {
+        //         return i * 200;
+        //     })
+        //     .duration(5000)
+        //     .attrTween("transform", translateAlong(line10.node()))
+        //     .each("end", transition);
+
+        // }
+
 
         // add the image/circle at San Francisco 
         svg.append("image")
@@ -445,39 +214,40 @@ body {
             .attr("height", 40);
 
 
-        
+
 
         // add a point on where the cities are
-
         svg.selectAll(".point")
             .data(arcdata)
             .enter()
             .append("circle")
             .attr("r", function(d, i) {
-                return arcdata[i].index * .6;
+                return arcdata[i].index * .08;
             })
             .style("fill", "grey")
-            .attr("cursor","pointer")
+            .style("stroke", "white")
+            .style("stroke-width", 1)
+            .attr("cursor", "pointer")
             .attr("transform", function(d, i) {
                 return "translate(" + projection([arcdata[i].sourceLocation[0], arcdata[i].sourceLocation[1]]) + ")";
             })
             .on("click", function(d) {
 
-                var text = d3.select(this)[0][0].__data__.tooltip;
-                var x = d3.select(this)[0][0].__data__.sourceLocation[0];
-                var y = d3.select(this)[0][0].__data__.sourceLocation[1];
+                var team = d3.select(this)[0][0].__data__.team;
+                var rank = d3.select(this)[0][0].__data__.rank;
 
+                
                 d3.select("#tooltip")
                     .select("#value")
-                    .text(text);
-                   
+                    .text(team + " fans were ranked #" +rank + " in search interest in flights to the Super Bowl over the 2015-16 NFL season.");
+
 
                 d3.select("#tooltip").classed("hidden", false);
-            })
+            });
 
-        .on("mouseout", function() {
-            d3.select("#tooltip").classed("hidden", true);
-        });
+        // .on("mouseout", function() {
+        //     d3.select("#tooltip").classed("hidden", true);
+        // });
 
 
         // add the name of each city
@@ -486,15 +256,135 @@ body {
             .data(arcdata)
             .enter()
             .append("text")
-            .style("fill", "black")
-            .style("font-size", 11)
+            .attr("cursor", "default")
+            .style("fill", function(d, i) {
+                if (arcdata[i].rank < 11) {
+                    return "#333333";
+                } else {
+                    return "#a8a8a8";
+                };
+            })
+            // .attr("fill","black")
+            .style("font-size", function(d, i) {
+                if (arcdata[i].rank < 11) {
+                    return 11;
+                } else {
+                    return 9;
+                };
+            })
             .attr("text-anchor", "middle")
             .text(function(d, i) {
                 return arcdata[i].city;
             })
             .attr("transform", function(d, i) {
-                return "translate(" + projection([arcdata[i].sourceLocation[0], (arcdata[i].sourceLocation[1] + .6)]) + ")";
+                if (arcdata[i].city == "Washington, D.C.") {
+                    return "translate(" + projection([arcdata[i].sourceLocation[0], (arcdata[i].sourceLocation[1] - .9)]) + ")";
+                } else if (arcdata[i].city == "Philadelphia") {
+                    return "translate(" + projection([arcdata[i].sourceLocation[0] + 2.2, (arcdata[i].sourceLocation[1] - .6)]) + ")";
+                } else if ( arcdata[i].rank > 10){
+                    return "translate(" + projection([arcdata[i].sourceLocation[0], (arcdata[i].sourceLocation[1] - .5)]) + ")";
+                }
+                else {
+                    return "translate(" + projection([arcdata[i].sourceLocation[0], (arcdata[i].sourceLocation[1] + .5)]) + ")"
+                }
+            })
+
+        // create a table from the data
+
+        // function tabulate(data, columns) {
+        //     var table = d3.select("#table").append("table").style("color","grey").style("font-size",14)
+        //         thead = table.append("thead"),
+        //         tbody = table.append("tbody");
+
+        //     // append the header row
+        //     thead.append("tr")
+        //         .selectAll("th")
+        //         .data(columns)
+        //         .enter();
+        //         // .append("th")
+        //         // .text(function(column) {
+        //         //     return column;
+        //         // });
+
+        //     // create a row for each object in the data
+        //     var rows = tbody.selectAll("tr")
+        //         .data(data)
+        //         .enter()
+        //         .append("tr");
+
+        //     // create a cell in each row for each column
+        //     var cells = rows.selectAll("td")
+        //         .data(function(row) {
+        //             return columns.map(function(column) {
+        //                 return {
+        //                     column: column,
+        //                     value: row[column]
+        //                 };
+        //             });
+        //         })
+        //         .enter()
+        //         .append("td")
+        //         .html(function(d) {
+        //             return d.value;
+        //         });
+
+        //     return table;
+        // }
+
+        // // render the table
+        // var peopleTable = tabulate(arcdata, ["rank", "city"]);
+          
+        svg.append("rect")
+            .attr("rx", 6)
+            .attr("ry", 6)
+            .attr("x",750)
+            .attr("y", 220)
+            .attr("width", 200)
+            .attr("height", 250)
+            .style("fill","#e6e6e6")
+            .style("opacity",.3);
+
+        var top10 = arcdata.filter(function(d, i) {
+                if (arcdata[i].rank < 11) {
+                    return d;
+                }
             });
+
+        svg.selectAll(".team")
+            .data(top10)
+            .enter()
+            .append("text")
+            .attr("class","team")
+            .style("fill", "#333333")
+            .style("font-size", 12)
+            .attr("text-anchor", "front")
+            .text(function(d, i) {
+                return arcdata[i].team;
+            })
+            .attr("x", 810)
+            .attr("y",function(d,i){
+                return 240 + i * 25;
+            })
+
+        svg.selectAll(".rank")
+            .data(top10)
+            .enter()
+            .append("text")
+            .attr("class","rank")
+            .style("fill", "#333333")
+            .style("font-size", 12)
+            .attr("text-anchor", "front")
+            .text(function(d, i) {
+                return arcdata[i].rank;
+            })
+            .attr("x", 770)
+            .attr("y",function(d,i){
+                return 240 + i * 25;
+            })
+
+
+        
+
 
 
 
@@ -512,7 +402,7 @@ body {
     });
 
     function lngLatToArc(d, sourceName, targetName, bend) {
-        bend = 1;
+        bend = .7;
 
         var sourceLngLat = d[sourceName],
             targetLngLat = d[targetName];
@@ -523,17 +413,20 @@ body {
                 sourceY = sourceXY[1];
             var targetX = targetXY[0],
                 targetY = targetXY[1];
-            var dx = targetX - sourceX,
+            var dx = (targetX - sourceX),
                 dy = targetY - sourceY,
                 dr = Math.sqrt(dx * dx + dy * dy) * bend;
             // To avoid a whirlpool effect, make the bend direction consistent regardless of whether the source is east or west of the target
-            var west_of_source = (targetX - sourceX) < 0;
-            if (west_of_source) return "M" + targetX + "," + targetY + "A" + dr + "," + dr + " 0 0,1 " + sourceX + "," + sourceY;
+            // var west_of_source = (sourceY - targetY)/2 < 0;
+            // if (west_of_source) 
+            return "M" + targetX + "," + targetY + "A" + dr + "," + dr + " 0 0,1 " + sourceX + "," + sourceY;
             return "M" + sourceX + "," + sourceY + "A" + dr + "," + dr + " 0 0,1 " + targetX + "," + targetY;
 
-        } else {
-            return "M0,0,l0,0z";
         }
+        // else {
+        //     return "M" + targetX + "," + targetY + "A" + dr + "," + dr + " 0 0,0 " + sourceX + "," + sourceY;
+        //     return "M" + sourceX + "," + sourceY + "A" + dr + "," + dr + " 0 0,1 " + targetX + "," + targetY;
+        // }
     }
 
 
@@ -546,7 +439,7 @@ body {
 
         var container = d3.select(svg.node().parentNode),
             width = parseInt(svg.style("width")),
-            height = parseInt(svg.style("height")) ,
+            height = parseInt(svg.style("height")),
             aspect = width / height;
 
         svg.attr("viewBox", "0 0 " + width + " " + height)
@@ -561,5 +454,4 @@ body {
             svg.attr("height", Math.round(targetWidth / aspect));
         }
     };
-
     </script>
