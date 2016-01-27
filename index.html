@@ -33,7 +33,6 @@ body {
 }
 
 
-
 /*#table{
     width:50%;
 }
@@ -46,6 +45,7 @@ body {
     margin: 0;
     font-size: 14px;
 }
+
 
 #tooltip {
     position: absolute;
@@ -64,8 +64,6 @@ body {
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     pointer-events: none;
 }*/
-
-
 </style>
 
 <body>
@@ -171,6 +169,7 @@ body {
                 .data(arcdata[i].byTime)
                 .enter()
                 .append("circle")
+                .attr("class", "movingpts")
                 .attr("r", function(d) {
                     return arcdata[i].index * .05;
                 })
@@ -185,33 +184,31 @@ body {
                 })
                 .duration(4000)
                 .attrTween("transform", transformLine);
-            // .each("end", transition)
+            // .each("end", transition);
+
 
         }
 
-        // transition();
 
-
-        // function transition() {
-        // circle10.transition()
-        //     .delay(function(d, i) {
-        //         return i * 200;
-        //     })
-        //     .duration(5000)
-        //     .attrTween("transform", translateAlong(line10.node()))
-        //     .each("end", transition);
-
-        // }
 
 
         // add the image/circle at San Francisco 
-        svg.append("image")
-            .attr("xlink:href", "football.png")
+        // svg.append("image")
+        //     .attr("xlink:href", "football.png")
+        //     .attr("transform", function() {
+        //         return "translate(" + projection([-123.9194155, 38.7749295]) + ")";
+        //     })
+        //     .attr("width", 40)
+        //     .attr("height", 40);
+
+        svg.append("circle")
+            .attr("r", 13)
+            .style("fill", "grey")
+            .style("stroke", "white")
             .attr("transform", function() {
-                return "translate(" + projection([-123.9194155, 38.7749295]) + ")";
-            })
-            .attr("width", 40)
-            .attr("height", 40);
+                return "translate(" + projection([-122.4194155, 37.7749295]) + ")";
+            });
+
 
 
 
@@ -236,18 +233,66 @@ body {
                 var team = d3.select(this)[0][0].__data__.team;
                 var rank = d3.select(this)[0][0].__data__.rank;
 
-                
-                d3.select("#tooltip")
-                    .select("#value")
-                    .text(team + " fans were ranked #" +rank + " in search interest in flights to the Super Bowl over the 2015-16 NFL season.");
+                d3.selectAll(".rank")
+                    .transition()
+                    .duration(10)
+                    .style("opacity", 0)
+
+                d3.selectAll(".team")
+                    .transition()
+                    .duration(10)
+                    .style("opacity", 0)
+
+                d3.selectAll("#top10")
+                    .transition()
+                    .duration(10)
+                    .style("opacity", 0)
+
+                svg.append("text")
+                    .attr("x", 810)
+                    .attr("y", 200)
+                    .attr("id", "this")
+                    .style("fill", "#333333")
+                    .style("font-size", 15)
+                    .attr("text-anchor", "front")
+                    .text(team);
+
+                svg.append("text")
+                    .attr("class", "showtext")
+                    .style("fill", "#333333")
+                    .attr("transform", "translate( 765 ,  250)")
+                    .attr("dy","1.8em")
+                    .style("font-size", 16)
+                    .attr("text-anchor", "front")
+                    .text(team + " fans were ranked #" + rank + " in search interest in flights to the Super Bowl over the 2015-16 NFL season.")
+                    .call(wrap, 180);
+                    
+            })
+
+            .on("mouseout", function() {
+                d3.selectAll(".rank")
+                    .transition()
+                    .duration(100)
+                    .style("opacity", 1);
+
+                d3.selectAll(".team")
+                    .transition()
+                    .duration(100)
+                    .style("opacity", 1);
+
+                d3.selectAll("#top10")
+                    .transition()
+                    .duration(100)
+                    .style("opacity", 1);
 
 
-                d3.select("#tooltip").classed("hidden", false);
+                d3.select(".showtext")
+                    .remove();
+
+                d3.select("#this")
+                    .remove();
+
             });
-
-        // .on("mouseout", function() {
-        //     d3.select("#tooltip").classed("hidden", true);
-        // });
 
 
         // add the name of each city
@@ -281,10 +326,9 @@ body {
                     return "translate(" + projection([arcdata[i].sourceLocation[0], (arcdata[i].sourceLocation[1] - .9)]) + ")";
                 } else if (arcdata[i].city == "Philadelphia") {
                     return "translate(" + projection([arcdata[i].sourceLocation[0] + 2.2, (arcdata[i].sourceLocation[1] - .6)]) + ")";
-                } else if ( arcdata[i].rank > 10){
+                } else if (arcdata[i].rank > 10) {
                     return "translate(" + projection([arcdata[i].sourceLocation[0], (arcdata[i].sourceLocation[1] - .5)]) + ")";
-                }
-                else {
+                } else {
                     return "translate(" + projection([arcdata[i].sourceLocation[0], (arcdata[i].sourceLocation[1] + .5)]) + ")"
                 }
             })
@@ -333,28 +377,46 @@ body {
 
         // // render the table
         // var peopleTable = tabulate(arcdata, ["rank", "city"]);
-          
+
+        svg.append("image")
+            .attr("xlink:href", "football.png")
+            .attr("x", 760)
+            .attr("y", 170)
+            .attr("width", 40)
+            .attr("height", 40);
+
+        svg.append("text")
+            .attr("x", 810)
+            .attr("y", 200)
+            .attr("id", "top10")
+            .style("fill", "#333333")
+            .style("font-size", 20)
+            .attr("text-anchor", "front")
+            .text("Top 10 Teams");
+
+
         svg.append("rect")
+            .attr("id", "rect")
             .attr("rx", 6)
             .attr("ry", 6)
-            .attr("x",750)
+            .attr("x", 750)
             .attr("y", 220)
             .attr("width", 200)
-            .attr("height", 250)
-            .style("fill","#e6e6e6")
-            .style("opacity",.3);
+            .attr("height", 255)
+            .style("fill", "#e6e6e6")
+            .style("opacity", .3);
 
         var top10 = arcdata.filter(function(d, i) {
-                if (arcdata[i].rank < 11) {
-                    return d;
-                }
-            });
+            if (arcdata[i].rank < 11) {
+                return d;
+            }
+        });
 
         svg.selectAll(".team")
             .data(top10)
             .enter()
             .append("text")
-            .attr("class","team")
+            .attr("class", "team")
             .style("fill", "#333333")
             .style("font-size", 12)
             .attr("text-anchor", "front")
@@ -362,7 +424,7 @@ body {
                 return arcdata[i].team;
             })
             .attr("x", 810)
-            .attr("y",function(d,i){
+            .attr("y", function(d, i) {
                 return 240 + i * 25;
             })
 
@@ -370,7 +432,7 @@ body {
             .data(top10)
             .enter()
             .append("text")
-            .attr("class","rank")
+            .attr("class", "rank")
             .style("fill", "#333333")
             .style("font-size", 12)
             .attr("text-anchor", "front")
@@ -378,13 +440,40 @@ body {
                 return arcdata[i].rank;
             })
             .attr("x", 770)
-            .attr("y",function(d,i){
+            .attr("y", function(d, i) {
                 return 240 + i * 25;
             })
 
 
-        
 
+        function wrap(text, width) {
+            text.each(function() {
+                var text = d3.select(this),
+                    words = text.text().split(/\s+/).reverse(),
+                    word,
+                    line = [],
+                    lineNumber = 0,
+                    lineHeight = 0, // ems
+                    y = text.attr("y"),
+                    dy = parseFloat(text.attr("dy")),
+                    tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+                while (word = words.pop()) {
+                    line.push(word);
+                    tspan.text(line.join(" "));
+                    if (tspan.node().getComputedTextLength() > width) {
+                        line.pop();
+                        tspan.text(line.join(" "));
+                        line = [word];
+                        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                    }
+                }
+            });
+        }
+
+        function type(d) {
+            d.value = +d.value;
+            return d;
+        }
 
 
 
