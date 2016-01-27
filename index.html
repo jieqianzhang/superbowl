@@ -166,7 +166,8 @@ body {
                 });
 
             var l = svg.selectAll(".point")
-                .data(arcdata[i].byTime)
+                .data(arcdata)
+                // .data(arcdata[i].byTime)
                 .enter()
                 .append("circle")
                 .attr("class", "movingpts")
@@ -180,12 +181,10 @@ body {
 
             l.transition()
                 .delay(function(d, i) {
-                    return i * 100;
+                    return i * 300;
                 })
                 .duration(4000)
                 .attrTween("transform", transformLine);
-            // .each("end", transition);
-
 
         }
 
