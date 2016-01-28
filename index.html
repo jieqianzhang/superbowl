@@ -32,6 +32,10 @@ body {
     fill: none;
 }
 
+#graphic{
+    margin-left: 10%;
+    margin-right: 10%;
+}
 
 /*#table{
     width:50%;
@@ -285,9 +289,9 @@ body {
             .attr("transform", function(d, i) {
                 if (arcdata[i].city == "Washington, D.C.") {
                     return "translate(" + projection([arcdata[i].sourceLocation[0], (arcdata[i].sourceLocation[1] - .9)]) + ")";
-                }else if (arcdata[i].city == "New England") {
+                } else if (arcdata[i].city == "New England") {
                     return "translate(" + projection([arcdata[i].sourceLocation[0], (arcdata[i].sourceLocation[1] - 1)]) + ")";
-                }else if (arcdata[i].city == "Philadelphia") {
+                } else if (arcdata[i].city == "Philadelphia") {
                     return "translate(" + projection([arcdata[i].sourceLocation[0] + 2.2, (arcdata[i].sourceLocation[1] - .6)]) + ")";
                 } else if (arcdata[i].rank > 10) {
                     return "translate(" + projection([arcdata[i].sourceLocation[0], (arcdata[i].sourceLocation[1] - .5)]) + ")";
@@ -373,52 +377,7 @@ body {
             .attr("text-anchor", "middle")
             .attr("transform", "translate(" + projection([-122.2194155, 36.949295]) + ")");
 
-
-
-        // create a table from the data
-
-        // function tabulate(data, columns) {
-        //     var table = d3.select("#table").append("table").style("color","grey").style("font-size",14)
-        //         thead = table.append("thead"),
-        //         tbody = table.append("tbody");
-
-        //     // append the header row
-        //     thead.append("tr")
-        //         .selectAll("th")
-        //         .data(columns)
-        //         .enter();
-        //         // .append("th")
-        //         // .text(function(column) {
-        //         //     return column;
-        //         // });
-
-        //     // create a row for each object in the data
-        //     var rows = tbody.selectAll("tr")
-        //         .data(data)
-        //         .enter()
-        //         .append("tr");
-
-        //     // create a cell in each row for each column
-        //     var cells = rows.selectAll("td")
-        //         .data(function(row) {
-        //             return columns.map(function(column) {
-        //                 return {
-        //                     column: column,
-        //                     value: row[column]
-        //                 };
-        //             });
-        //         })
-        //         .enter()
-        //         .append("td")
-        //         .html(function(d) {
-        //             return d.value;
-        //         });
-
-        //     return table;
-        // }
-
-        // // render the table
-        // var peopleTable = tabulate(arcdata, ["rank", "city"]);
+        // add the table and the header on the lower right corner of the window 
 
         svg.append("image")
             .attr("xlink:href", "football.png")
