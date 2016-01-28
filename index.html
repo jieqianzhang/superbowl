@@ -39,37 +39,6 @@ body {
     margin-right: 10%;
 }
 
-/*#table{
-    width:50%;
-}
-
-#tooltip.hidden {
-    display: none;
-}
-
-#tooltip p {
-    margin: 0;
-    font-size: 14px;
-}
-
-
-#tooltip {
-    position: absolute;
-    width: 25%;
-    top: 30px;
-    right: 5px;
-    height: auto;
-    padding: 10px;
-    background-color: #e6e6e6;
-    opacity: .8;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-    pointer-events: none;
-}*/
 </style>
 
 <body>
@@ -166,7 +135,7 @@ body {
             tranformLine;
 
 
-
+    function moveDots(){
 
         for (var i = 0; i < 28; i++) {
 
@@ -174,6 +143,7 @@ body {
             k = svg.append("path")
                 .style("stroke", "none")
                 .style("fill", "none")
+                .attr("class","ghostpath")
                 .attr("d", function(d) {
                     return lngLatToArc(arcdata[i], 'sourceLocation', 'targetLocation', 1);
                 });
@@ -194,53 +164,24 @@ body {
 
             l.transition()
                 .delay(function(d, i) {
-                    return i * 200;
+                    return i * 300;
                 })
                 .duration(4000)
                 .attrTween("transform", transformLine)
+                .each("end",function(){
+                    d3.select(this)
+                    .remove();
+
+                    d3.selectAll(".ghostpath")
+                    .remove();
+
+                })
         }
+}
 
+    moveDots();
 
-        // function moveDots(){
-
-        //    var xy = projection([arcdata[i].sourceLocation[0], arcdata[i].sourceLocation[1]]);
-
-        //    svg.selectAll(".point")
-        //       . .data(arcdata[i].byTime)
-        //         // .data(arcdata[i].byTime)
-        //         .enter()
-        //         .append("circle")
-        //         .attr("class", "movingpts")
-        //         .attr("r", function(d) {
-        //             return arcdata[i].index * .05;
-        //         })
-        //         .style("fill", "grey")
-        //         .style("opacity", .6);
-        //       .attr("transform", "translate(" + xy[0] + "," + xy[1] + ")" );
-
-
-
-        // l.transition()
-        //     .delay(function(d, i) {
-        //         return i * 200;
-        //     })
-        //     .duration(4000)
-        //     .attrTween("transform", transformLine)
-        //     .each("end", function(d,i){
-
-        //         var xy = projection([arcdata[i].sourceLocation[0], arcdata[i].sourceLocation[1]]);
-
-        //         d3.selectAll(this)
-        //             .attr("transform", "translate(" + xy[0] + "," + xy[1] + ")" )
-
-        //     })
-        // }
-
-
-        // setInterval(moveDots, 8000);
-
-
-
+    setInterval(moveDots, 5000);
 
 
 
@@ -253,7 +194,7 @@ body {
                 return arcdata[i].index * .08;
             })
             .style("fill", "grey")
-            .style("stroke", "white")
+            // .style("stroke", "white")
             .style("stroke-width", 1)
             .attr("cursor", "default")
             .attr("transform", function(d, i) {
@@ -306,6 +247,9 @@ body {
 
                 var team = d3.select(this)[0][0].__data__.team;
                 var rank = d3.select(this)[0][0].__data__.rank;
+
+                var circle = d3.select(this);
+                console.log(circle);
 
                 d3.selectAll(".rank")
                     .transition()
@@ -371,13 +315,21 @@ body {
 
         // add the image/circle at San Francisco 
         svg.append("text")
-            .attr("id", "sf")
+            .attr("class", "sf")
             .attr("cursor", "default")
             .text("SF Bay Area")
             .style("fill", "black")
             .style("font-size", 11)
             .attr("text-anchor", "middle")
-            .attr("transform", "translate(" + projection([-122.2194155, 36.949295]) + ")");
+            .attr("transform", "translate(" + projection([-122.2194155, 36.549295]) + ")");
+
+        svg.append("circle")
+            .attr("class", "sf")
+            .attr("cursor", "default")
+            .style("fill", "grey")
+            // .style("stroke","white")
+            .attr("r", 12)
+            .attr("transform", "translate(" + projection([-122.4194155, 37.7749295]) + ")");
 
         // add the table and the header on the lower right corner of the window 
 
