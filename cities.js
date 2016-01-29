@@ -25,7 +25,7 @@ var arcdata = [{
 }, {
     sourceLocation: [-122.3331, 47.6097],
     targetLocation: [-122.4194155, 37.7749295],
-    city: "Seatle",
+    city: "Seattle",
     team: "Seattle Seahawks",
     index: 82.16294604,
     rank: 3,
@@ -122,7 +122,7 @@ var arcdata = [{
 }, {
     sourceLocation: [-112.0737951, 33.44818315],
     targetLocation: [-122.4194155, 37.7749295],
-    city: "Pheonix",
+    city: "Phoenix",
     team: "Arizona Cardinals",
     index: 19.63042799,
     rank: 22,
@@ -312,14 +312,14 @@ var arcdata = [{
     }],
     byTime:[{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"}]
 }, {
-    sourceLocation: [-118.2500, 34.0500],
+    sourceLocation: [-90.1978, 38.6272],
     targetLocation: [-122.4194155, 37.7749295],
-    city: "Los Angeles",
+    city: "St. Louis",
     team: "St. Louis Rams",
     index: 25.80098003,
     rank: 17,
     gradient: [{
-        offset: "20%",
+        offset: "50%",
         color: "lightblue"
     }],
     byTime:[{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"},{time: "1", color:"grey"}]
