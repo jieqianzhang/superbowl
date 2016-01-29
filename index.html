@@ -742,6 +742,15 @@ body {
                 return 240 + i * 25;
             })
 
+        svg.append("text")
+        	.attr("text-anchor","front")
+        	.attr("id","credit")
+        	.text("Designed by Jieqian Zhang")
+        	.style("fill","lightgrey")
+        	.style("font-size",9)
+        	.attr("x", 840)
+        	.attr("y", 490);
+
 
 
         function wrap(text, width) {
