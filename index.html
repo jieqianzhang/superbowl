@@ -358,6 +358,14 @@ body {
                     });
             })
             .on("click", function(d) {
+
+                d3.select(".showtext")
+                    .remove();
+
+                d3.select("#this")
+                    .remove();
+
+
                 var team = d3.select(this)[0][0].__data__.team;
                 var rank = d3.select(this)[0][0].__data__.rank;
 
@@ -423,60 +431,60 @@ body {
                     .transition()
                     .duration(10)
                     .attr("height", 120);
-            })
-            .on("mouseout", function() {
-                d3.selectAll(".rank")
-                    .transition()
-                    .duration(100)
-                    .style("opacity", 1);
-
-                d3.selectAll(".team")
-                    .transition()
-                    .duration(100)
-                    .style("opacity", 1);
-
-                d3.selectAll("#top10")
-                    .transition()
-                    .duration(100)
-                    .style("opacity", 1);
-
-
-                d3.select(".showtext")
-                    .remove();
-
-                d3.select("#this")
-                    .remove();
-
-                d3.selectAll(".cityPts")
-                    .transition()
-                    .duration(100)
-                    .style("fill", "grey")
-                    .attr("r", function(d, i) {
-                        return arcdata[i].index * .1;
-                    });
-
-                d3.selectAll(".rankNm")
-                    .transition()
-                    .duration(100)
-                    .style("opacity", 0);
-
-                d3.select("#rect")
-                    .transition()
-                    .duration(50)
-                    .attr("height", 255);
-
-                d3.selectAll(".cityLabel")
-                    .transition()
-                    .duration(100)
-                    .style("font-size", function(d, i) {
-                        if (arcdata[i].rank < 11) {
-                            return 11;
-                        } else {
-                            return 9;
-                        };
-                    })
-
             });
+            // .on("mouseout", function() {
+            //     d3.selectAll(".rank")
+            //         .transition()
+            //         .duration(100)
+            //         .style("opacity", 1);
+
+            //     d3.selectAll(".team")
+            //         .transition()
+            //         .duration(100)
+            //         .style("opacity", 1);
+
+            //     d3.selectAll("#top10")
+            //         .transition()
+            //         .duration(100)
+            //         .style("opacity", 1);
+
+
+            //     d3.select(".showtext")
+            //         .remove();
+
+            //     d3.select("#this")
+            //         .remove();
+
+            //     d3.selectAll(".cityPts")
+            //         .transition()
+            //         .duration(100)
+            //         .style("fill", "grey")
+            //         .attr("r", function(d, i) {
+            //             return arcdata[i].index * .1;
+            //         });
+
+            //     d3.selectAll(".rankNm")
+            //         .transition()
+            //         .duration(100)
+            //         .style("opacity", 0);
+
+            //     d3.select("#rect")
+            //         .transition()
+            //         .duration(50)
+            //         .attr("height", 255);
+
+            //     d3.selectAll(".cityLabel")
+            //         .transition()
+            //         .duration(100)
+            //         .style("font-size", function(d, i) {
+            //             if (arcdata[i].rank < 11) {
+            //                 return 11;
+            //             } else {
+            //                 return 9;
+            //             };
+            //         })
+
+            // });
 
 
 
@@ -552,6 +560,13 @@ body {
             })
             .on("click", function(d) {
 
+                d3.select(".showtext")
+                    .remove();
+
+                d3.select("#this")
+                    .remove();
+
+
                 var team = d3.select(this)[0][0].__data__.team;
                 var rank = d3.select(this)[0][0].__data__.rank;
 
@@ -618,62 +633,62 @@ body {
                     .duration(10)
                     .attr("height", 120);
 
-            })
+            });
 
-        .on("mouseout", function() {
-            d3.selectAll(".rank")
-                .transition()
-                .duration(100)
-                .style("opacity", 1);
+        // .on("mouseout", function() {
+        //     d3.selectAll(".rank")
+        //         .transition()
+        //         .duration(100)
+        //         .style("opacity", 1);
 
-            d3.selectAll(".team")
-                .transition()
-                .duration(100)
-                .style("opacity", 1);
+        //     d3.selectAll(".team")
+        //         .transition()
+        //         .duration(100)
+        //         .style("opacity", 1);
 
-            d3.selectAll("#top10")
-                .transition()
-                .duration(100)
-                .style("opacity", 1);
-
-
-            d3.select(".showtext")
-                .remove();
-
-            d3.select("#this")
-                .remove();
-
-            d3.selectAll(".cityPts")
-                .transition()
-                .duration(100)
-                .style("fill", "grey")
-                .attr("r", function(d, i) {
-                    return arcdata[i].index * .1;
-                });
-
-            d3.selectAll(".rankNm")
-                .transition()
-                .duration(100)
-                .style("opacity", 0);
-
-            d3.select("#rect")
-                .transition()
-                .duration(50)
-                .attr("height", 255);
-
-            d3.selectAll(".cityLabel")
-                .transition()
-                .duration(100)
-                .style("font-size", function(d, i) {
-                    if (arcdata[i].rank < 11) {
-                        return 11;
-                    } else {
-                        return 9;
-                    };
-                })
+        //     d3.selectAll("#top10")
+        //         .transition()
+        //         .duration(100)
+        //         .style("opacity", 1);
 
 
-        });
+        //     d3.select(".showtext")
+        //         .remove();
+
+        //     d3.select("#this")
+        //         .remove();
+
+        //     d3.selectAll(".cityPts")
+        //         .transition()
+        //         .duration(100)
+        //         .style("fill", "grey")
+        //         .attr("r", function(d, i) {
+        //             return arcdata[i].index * .1;
+        //         });
+
+        //     d3.selectAll(".rankNm")
+        //         .transition()
+        //         .duration(100)
+        //         .style("opacity", 0);
+
+        //     d3.select("#rect")
+        //         .transition()
+        //         .duration(50)
+        //         .attr("height", 255);
+
+        //     d3.selectAll(".cityLabel")
+        //         .transition()
+        //         .duration(100)
+        //         .style("font-size", function(d, i) {
+        //             if (arcdata[i].rank < 11) {
+        //                 return 11;
+        //             } else {
+        //                 return 9;
+        //             };
+        //         })
+
+
+        // });
 
 
         // add the image/circle at San Francisco 
