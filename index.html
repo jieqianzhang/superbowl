@@ -11,14 +11,13 @@
 <style>
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: rgba(0, 0, 0, .9);
 }
 
 .land {
-    /*fill: #e6e6e6;
-    opacity: .3;*/
-    fill: #7a7a7a;
-    stroke: lightgrey;
+    fill: #e6e6e6;
+    opacity: .6;
+   /* fill: #7a7a7a;*/
+    stroke: grey;
     stroke-width: 1px;
 }
 
@@ -35,10 +34,10 @@ body {
 }
 
 #graphic {
-    width: 76%;
+    width: 80%;
     height: 100%;
-    margin-left: 12%;
-    margin-right: 12%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 </style>
 
@@ -50,7 +49,7 @@ body {
     </div>
     <script type="text/javascript" src="js/d3.min.js"></script>
     <script type="text/javascript" src="js/topojson.v1.min.js"></script>
-    <script src="cities_teamcolor.js"></script>
+    <script src="cities.js"></script>
     <!-- 
     <script src="cities.js"></script>
      -->
@@ -93,7 +92,7 @@ body {
             .data(arcdata)
             .enter()
             .append("path")
-            .style("opacity", 1)
+            .style("opacity", .6)
             .attr("d", function(d) {
                 return lngLatToArc(d, 'sourceLocation', 'targetLocation', 15);
             })
@@ -123,7 +122,7 @@ body {
 
         gradient.append("stop")
             .attr("offset", "0%")
-            .attr("stop-color", "lightgrey");
+            .attr("stop-color", "orange");
 
         gradient.append("stop")
             .attr("offset", function(d, i) {
@@ -158,7 +157,7 @@ body {
                     .attr("r", function(d) {
                         return arcdata[i].index * .09;
                     })
-                    .style("fill", "lightgrey")
+                    .style("fill", "grey")
                     .style("opacity", 0);
 
 
@@ -170,7 +169,7 @@ body {
                         return i * 300;
                     })
                     .duration(4000)
-                    .style("opacity", 1)
+                    .style("opacity", .8)
                     .attrTween("transform", transformLine)
                     .each("end", function() {
 
@@ -202,11 +201,11 @@ body {
             .attr("class", "cityLabel")
             .style("fill", function(d, i) {
                 if (arcdata[i].rank < 11) {
-                    // return "#333333";
-                    return "#ebecec"
+                    return "#333333";
+                    // return "#ebecec"
                 } else {
-                    // return "#a8a8a8";
-                    return "#ebecec"
+                    return "#a8a8a8";
+                    // return "#ebecec"
                 };
             })
             .style("font-size", function(d, i) {
@@ -265,7 +264,7 @@ body {
             .attr("r", function(d, i) {
                 return arcdata[i].index * .1;
             })
-            .style("fill", "lightgrey")
+            .style("fill", "grey")
             // .style("stroke", "white")
             .style("stroke-width", 1)
             .attr("cursor", "default")
@@ -321,98 +320,10 @@ body {
                     return "translate(" + projection([arcdata[i].sourceLocation[0], (arcdata[i].sourceLocation[1] + .7)]) + ")"
                 }
             })
-            .on("click mouseover", function(d) {
-
-                var city = d3.select(this)[0][0].__data__.city;
-                var team = d3.select(this)[0][0].__data__.team;
-                var rank = d3.select(this)[0][0].__data__.rank;
-
-
-                d3.selectAll(".cityLabel")
-                    .transition()
-                    .duration(100)
-                    .style("font-size", function(d, i) {
-                        if (arcdata[i].city === city) {
-                            return 12;
-                        } else if (arcdata[i].rank < 11) {
-                            return 11;
-                        } else {
-                            return 9;
-                        };
-                    })
-
-
-                d3.selectAll(".cityPts")
-                    .transition()
-                    .duration(100)
-                    .attr("r", function(d, i) {
-                        if (arcdata[i].rank === rank) {
-                            return 9;
-                        } else {
-                            return arcdata[i].index * .1;
-                        }
-                    });
-
-                d3.selectAll(".rankNm")
-                    .transition()
-                    .duration(100)
-                    .style("opacity", function(d, i) {
-                        if (arcdata[i].rank === rank) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }
-                    });
-
-                d3.selectAll(".rank")
-                    .transition()
-                    .duration(10)
-                    .style("opacity", 0)
-
-                d3.selectAll(".team")
-                    .transition()
-                    .duration(10)
-                    .style("opacity", 0)
-
-                d3.selectAll("#top10")
-                    .transition()
-                    .duration(10)
-                    .style("opacity", 0)
-
-                svg.append("text")
-                    .attr("x", 800)
-                    .attr("y", 195)
-                    .attr("id", "this")
-                    // .style("fill", "#333333")
-                    .style("fill", "#ebecec")
-                    .style("font-size", 15)
-                    .attr("text-anchor", "front")
-                    .text(team);
-
-                svg.append("text")
-                    .attr("class", "showtext")
-                    // .style("fill", "#333333")
-                    .style("fill", "#ebecec")
-                    .attr("transform", "translate( 765 ,  220)")
-                    .attr("dy", "1.8em")
-                    .style("font-size", 12)
-                    .attr("text-anchor", "front")
-                    .text(team + " fans were ranked #" + rank + " in search interest in flights to the Super Bowl over the 2015-16 NFL season.")
-                    .call(wrap, 180);
-
-                d3.select("#rect")
-                    .transition()
-                    .duration(10)
-                    .attr("height", 120);
-
-            })
             .on("mouseover", function(d) {
-
                 var city = d3.select(this)[0][0].__data__.city;
                 var team = d3.select(this)[0][0].__data__.team;
                 var rank = d3.select(this)[0][0].__data__.rank;
-
-
                 d3.selectAll(".cityLabel")
                     .transition()
                     .duration(100)
@@ -425,7 +336,6 @@ body {
                             return 9;
                         };
                     })
-
                 d3.selectAll(".cityPts")
                     .transition()
                     .duration(100)
@@ -436,7 +346,6 @@ body {
                             return arcdata[i].index * .1;
                         }
                     });
-
                 d3.selectAll(".rankNm")
                     .transition()
                     .duration(100)
@@ -447,13 +356,8 @@ body {
                             return 0;
                         }
                     });
-
-
-
             })
             .on("click", function(d) {
-
-
                 var team = d3.select(this)[0][0].__data__.team;
                 var rank = d3.select(this)[0][0].__data__.rank;
 
@@ -480,26 +384,26 @@ body {
                     });
 
                 d3.selectAll(".rank")
-                    .transition()
-                    .duration(10)
+                    // .transition()
+                    // .duration(10)
                     .style("opacity", 0)
 
                 d3.selectAll(".team")
-                    .transition()
-                    .duration(10)
+                    // .transition()
+                    // .duration(10)
                     .style("opacity", 0)
 
                 d3.selectAll("#top10")
-                    .transition()
-                    .duration(10)
+                    // .transition()
+                    // .duration(10)
                     .style("opacity", 0)
 
                 svg.append("text")
                     .attr("x", 800)
                     .attr("y", 195)
                     .attr("id", "this")
-                    // .style("fill", "#333333")
-                    .style("fill", "#ebecec")
+                    .style("fill", "#333333")
+                    // .style("fill", "#ebecec")
                     .style("font-size", 15)
                     .attr("text-anchor", "front")
                     .text(team);
@@ -546,7 +450,7 @@ body {
                 d3.selectAll(".cityPts")
                     .transition()
                     .duration(100)
-                    .style("fill", "lightgrey")
+                    .style("fill", "grey")
                     .attr("r", function(d, i) {
                         return arcdata[i].index * .1;
                     });
@@ -573,8 +477,6 @@ body {
                     })
 
             });
-
-
 
 
 
@@ -590,7 +492,7 @@ body {
             .text(function(d, i) {
                 return arcdata[i].rank;
             })
-            .style("stroke", "#424343")
+            .style("stroke", "white")
             .style("opacity", 0)
             .style("text-anchor", "middle")
             .style("font-size", 11)
@@ -605,19 +507,16 @@ body {
             .append("circle")
             .attr("class", "invispts")
             .attr("r", 12)
-            .style("fill", "lightgrey")
+            .style("fill", "grey")
             .style("opacity", 0)
             .attr("cursor", "pointer")
             .attr("transform", function(d, i) {
                 return "translate(" + projection([arcdata[i].sourceLocation[0], arcdata[i].sourceLocation[1]]) + ")";
             })
             .on("mouseover", function(d) {
-
                 var city = d3.select(this)[0][0].__data__.city;
                 var team = d3.select(this)[0][0].__data__.team;
                 var rank = d3.select(this)[0][0].__data__.rank;
-
-
                 d3.selectAll(".cityLabel")
                     .transition()
                     .duration(100)
@@ -630,7 +529,6 @@ body {
                             return 9;
                         };
                     })
-
                 d3.selectAll(".cityPts")
                     .transition()
                     .duration(100)
@@ -641,7 +539,6 @@ body {
                             return arcdata[i].index * .1;
                         }
                     });
-
                 d3.selectAll(".rankNm")
                     .transition()
                     .duration(100)
@@ -652,12 +549,8 @@ body {
                             return 0;
                         }
                     });
-
-
-
             })
             .on("click", function(d) {
-
 
                 var team = d3.select(this)[0][0].__data__.team;
                 var rank = d3.select(this)[0][0].__data__.rank;
@@ -685,26 +578,26 @@ body {
                     });
 
                 d3.selectAll(".rank")
-                    .transition()
-                    .duration(10)
+                    // .transition()
+                    // .duration(10)
                     .style("opacity", 0)
 
                 d3.selectAll(".team")
-                    .transition()
-                    .duration(10)
+                    // .transition()
+                    // .duration(10)
                     .style("opacity", 0)
 
                 d3.selectAll("#top10")
-                    .transition()
-                    .duration(10)
+                    // .transition()
+                    // .duration(10)
                     .style("opacity", 0)
 
                 svg.append("text")
                     .attr("x", 800)
                     .attr("y", 195)
                     .attr("id", "this")
-                    // .style("fill", "#333333")
-                    .style("fill", "#ebecec")
+                    .style("fill", "#333333")
+                    // .style("fill", "#ebecec")
                     .style("font-size", 15)
                     .attr("text-anchor", "front")
                     .text(team);
@@ -724,78 +617,63 @@ body {
                     .transition()
                     .duration(10)
                     .attr("height", 120);
+
             })
-            .on("mouseout", function() {
-                d3.selectAll(".rank")
-                    .transition()
-                    .duration(100)
-                    .style("opacity", 1);
 
-                d3.selectAll(".team")
-                    .transition()
-                    .duration(100)
-                    .style("opacity", 1);
+        .on("mouseout", function() {
+            d3.selectAll(".rank")
+                .transition()
+                .duration(100)
+                .style("opacity", 1);
 
-                d3.selectAll("#top10")
-                    .transition()
-                    .duration(100)
-                    .style("opacity", 1);
+            d3.selectAll(".team")
+                .transition()
+                .duration(100)
+                .style("opacity", 1);
 
-
-                d3.select(".showtext")
-                    .remove();
-
-                d3.select("#this")
-                    .remove();
-
-                d3.selectAll(".cityPts")
-                    .transition()
-                    .duration(100)
-                    .style("fill", "lightgrey")
-                    .attr("r", function(d, i) {
-                        return arcdata[i].index * .1;
-                    });
-
-                d3.selectAll(".rankNm")
-                    .transition()
-                    .duration(100)
-                    .style("opacity", 0);
-
-                d3.select("#rect")
-                    .transition()
-                    .duration(50)
-                    .attr("height", 255);
-
-                d3.selectAll(".cityLabel")
-                    .transition()
-                    .duration(100)
-                    .style("font-size", function(d, i) {
-                        if (arcdata[i].rank < 11) {
-                            return 11;
-                        } else {
-                            return 9;
-                        };
-                    })
-
-            });
+            d3.selectAll("#top10")
+                .transition()
+                .duration(100)
+                .style("opacity", 1);
 
 
+            d3.select(".showtext")
+                .remove();
+
+            d3.select("#this")
+                .remove();
+
+            d3.selectAll(".cityPts")
+                .transition()
+                .duration(100)
+                .style("fill", "grey")
+                .attr("r", function(d, i) {
+                    return arcdata[i].index * .1;
+                });
+
+            d3.selectAll(".rankNm")
+                .transition()
+                .duration(100)
+                .style("opacity", 0);
+
+            d3.select("#rect")
+                .transition()
+                .duration(50)
+                .attr("height", 255);
+
+            d3.selectAll(".cityLabel")
+                .transition()
+                .duration(100)
+                .style("font-size", function(d, i) {
+                    if (arcdata[i].rank < 11) {
+                        return 11;
+                    } else {
+                        return 9;
+                    };
+                })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        });
 
 
         // add the image/circle at San Francisco 
@@ -803,7 +681,7 @@ body {
             .attr("class", "sf")
             .attr("cursor", "default")
             .text("SF Bay Area")
-            .style("fill", "lightgrey")
+            .style("fill", "grey")
             .style("font-size", 11)
             .attr("text-anchor", "middle")
             .attr("transform", "translate(" + projection([-122.2194155, 36.549295]) + ")");
@@ -811,7 +689,7 @@ body {
         svg.append("circle")
             .attr("class", "sf")
             .attr("cursor", "default")
-            .style("fill", "lightgrey")
+            .style("fill", "grey")
             // .style("stroke","white")
             .attr("r", 12)
             .attr("transform", "translate(" + projection([-122.4194155, 37.7749295]) + ")");
@@ -819,19 +697,19 @@ body {
         // add the table and the header on the lower right corner of the window 
 
         svg.append("image")
-            .attr("xlink:href", "football_blackbk.png")
-            .attr("x", 755)
-            .attr("y", 175)
-            .attr("width", 32)
-            .attr("height", 32);
+            .attr("xlink:href", "football.png")
+            .attr("x", 750)
+            .attr("y", 170)
+            .attr("width", 40)
+            .attr("height", 40);
 
         svg.append("text")
             .attr("id", "top10")
-            .style("fill", "#ebecec")
-            // .style("fill", "#333333")
+            // .style("fill", "#ebecec")
+            .style("fill", "#333333")
             .style("font-size", 15)
             .attr("text-anchor", "middle")
-            .attr("transform", "translate( 865 ,  168)")
+            .attr("transform", "translate( 870 ,  168)")
             .attr("dy", "1.2em")
             .text("Top Fans Searching for Super Bowl Flights")
             .call(wrap, 155);
@@ -891,15 +769,6 @@ body {
             .attr("y", function(d, i) {
                 return 240 + i * 25;
             })
-
-        svg.append("text")
-            .attr("text-anchor", "front")
-            .attr("id", "credit")
-            .text("Designed by Jieqian Zhang")
-            .style("fill", "lightgrey")
-            .style("font-size", 9)
-            .attr("x", 840)
-            .attr("y", 490);
 
 
 
